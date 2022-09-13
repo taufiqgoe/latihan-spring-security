@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/user")
     @ResponseStatus(HttpStatus.OK)
     public List<User> get() {
         return userService.loadAll();
+    }
+
+    @GetMapping("/message")
+    @ResponseStatus(HttpStatus.OK)
+    public String message() {
+        return "Secret message";
     }
 
 }

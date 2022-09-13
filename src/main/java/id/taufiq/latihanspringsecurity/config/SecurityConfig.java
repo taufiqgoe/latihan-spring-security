@@ -14,6 +14,8 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .mvcMatchers("/message/**").hasAnyAuthority("ROLE_USER")
+                        .mvcMatchers("/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults());
